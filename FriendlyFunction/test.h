@@ -9,7 +9,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {
-	cout << "Hello";
+	cout << "Hello, I'm Ajnura";	
 	// For Char
 	char ch1[] = {'N', '*'};
 	char ch2[] = {'A'};
