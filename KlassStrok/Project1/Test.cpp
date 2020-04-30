@@ -50,6 +50,29 @@ int main(int argc, char* argv[]) {
 	cout << "\n";
 	system("PAUSE");
 
+	cout << "\n\n Template: \n";
+	// For Double
+	double db1[] = { 1.5, 63.2 };
+	double db2[] = { 4.02 };
+
+	int sizeDb1 = sizeof(db1) / sizeof(double);
+	int sizeDb2 = sizeof(db2) / sizeof(double);
+
+	cout << "sizeDb1 " << sizeDb1 << "\n";
+	cout << "sizeDb2 " << sizeDb2 << "\n";
+
+	TDoubleString strDb1 = TDoubleString(db1, sizeDb1);
+	TDoubleString strDb2 = TDoubleString(db2, sizeDb2);
+
+	TDoubleString strDb = strDb1 + strDb2;
+
+	cout << "\n\n Input Double \n";
+	for (int i = 0; i < strDb.getSize(); i++) {
+		cout << strDb[i];
+	}
+
+	cout << "\n";
+	system("PAUSE");
 
 	
 

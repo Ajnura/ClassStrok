@@ -124,6 +124,78 @@ TMyCharString operator+(TMyCharString& str1, TMyCharString& str2) {
 	return ret;
 }
 
+///////////////////// Методы шаблонов
+template<class T>
+TTemplateString<T>::TTemplateString(int newTempSize)
+{
+	setSize(newTempSize);
+}
+
+template<class T>
+TTemplateString<T>::~TTemplateString()
+{
+	this->elems.clear();
+}
+
+template<class T>
+T& TTemplateString<T>::operator[](int i) {
+	return this->elems[i];
+}
+
+template<class T>
+unsigned int TTemplateString<T>::getSize() {
+	return this->elems.size();
+}
+
+template<class T>
+void TTemplateString<T>::setSize(int newSize) {
+	return this->elems.resize(newSize);
+}
+
+/////////////////////////////////////
+
+TDoubleString::TDoubleString(double* d, int newSize) : TTemplateString<double>(newSize) {
+	for (int i = 0; i < newSize; i++) {
+		(*this)[i] = d[i];
+	}
+}
+
+TDoubleString::TDoubleString(int newSize) : TTemplateString<double>(newSize) {
+
+}
+
+TDoubleString operator+(TDoubleString& str1, TDoubleString& str2) {
+	TDoubleString ret(str1.getSize() + str2.getSize());
+	for (int i = 0; i < str1.getSize(); i++) {
+		ret[i] = str1[i];
+	}
+	for (int i = 0; i < str2.getSize(); i++) {
+		ret[str1.getSize() + i] = str2[i];
+	}
+	return ret;
+}
+
+TWordString::TWordString() : TTemplateString<TMyCharString>(0) {
+
+}
+
+void TWordString::append(TMyCharString& w) {
+	unsigned int index = getSize();
+	this->setSize(index + 1);
+	(*this)[index] = w;
+}
+
+TWordString operator+(TWordString& str1, TWordString& str2) {
+	TWordString ret;
+	for (int i = 0; i < str1.getSize(); i++) {
+		ret.append(str1[i]);
+	}
+	for (int i = 0; i < str2.getSize(); i++) {
+		ret.append(str2[i]);
+	}
+	return ret;
+}
+
 
 
 

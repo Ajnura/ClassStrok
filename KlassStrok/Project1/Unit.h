@@ -53,6 +53,38 @@ protected:
 
 // =================================================================================================
 
+/**
+ * Реализаци¤ с помощью шаблона.
+ */
+
+template<class T>
+class TTemplateString {
+public:
+	TTemplateString(int newTempSize); // конструктор
+	virtual ~TTemplateString(); // виртуальный деструктор
+
+	unsigned int getSize();
+	T& operator[](int i);
+protected:
+	void setSize(int newSize);
+	vector<T> elems;
+};
+
+
+class TDoubleString : public TTemplateString<double> {
+public:
+	TDoubleString(double* d, int newSize);
+	TDoubleString(int newSize);
+	friend TDoubleString operator+(TDoubleString& str1, TDoubleString& str2);
+};
+
+
+class TWordString : public TTemplateString<TMyCharString> {
+public:
+	TWordString();
+	void append(TMyCharString& w);
+	friend TWordString operator+(TWordString& str1, TWordString& str2);
+};
 
 
 
